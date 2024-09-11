@@ -5,18 +5,15 @@ public class Position {
     public int Line { get; set; }
     public int Column { get; set; }
     public List<Position> NextPositions { get; set; }
-    public List<Position> RemovedPositions { get; set; }
 
     public Position(int line, int column) {
         Line = line;
         Column = column;
         NextPositions = [];
-        RemovedPositions = [];
     }
 
     public void RemoveInvalidNextPosition(Position position){
         NextPositions.Remove(position);
-        RemovedPositions.Add(position);
     }
 
     public void DefineNextPositions(char[,] chessboard){
@@ -30,8 +27,6 @@ public class Position {
     }
 
     private bool CheckIfTrapped(Position position, char[,] chessboard){
-        var test = position.Line == 5 && position.Column == 5;
-
         for (int i = 0; i < BOARD_SIZE; i++){
             if (chessboard[i, position.Column] == PLACED_QUEEN)
                 return true;

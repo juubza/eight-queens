@@ -2,9 +2,6 @@
 using static Constants;
 
 class Program {
-    const int BOARD_SIZE = 8;
-    const char PLACED_QUEEN = 'Q';
-    const char EMPTY = '_';
     static char[,] chessboard = {{EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY},
                                  {EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY},
                                  {EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY},
@@ -14,7 +11,6 @@ class Program {
                                  {EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY},
                                  {EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY}};
     static List<Position> positions = new List<Position>();
-    static List<Position> removedPositions = new List<Position>();
     static int stepsCount = 0;
 
     static void Main(string[] args){
@@ -73,13 +69,11 @@ class Program {
     static void PlaceQueen(Position position){
         chessboard[position.Line, position.Column] = PLACED_QUEEN;
         positions.Add(position);
-        removedPositions.Clear();
     }
 
     static void RemoveQueen(Position position){
         chessboard[position.Line, position.Column] = EMPTY;
         positions.Remove(position);
-        removedPositions.Add(position);
     }
 
     static void PrintBoard(Position position, bool isRemoving = false){
